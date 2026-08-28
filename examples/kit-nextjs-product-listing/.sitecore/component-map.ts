@@ -66,14 +66,15 @@ import * as useRouter from 'src/components/search-experience/search-components/u
 import * as useParams from 'src/components/search-experience/search-components/useParams';
 import * as useEvent from 'src/components/search-experience/search-components/useEvent';
 import * as useDebounce from 'src/components/search-experience/search-components/useDebounce';
+import * as models from 'src/components/search-experience/search-components/models';
+import * as constants from 'src/components/search-experience/search-components/constants';
 import * as SearchSkeletonItem from 'src/components/search-experience/search-components/SearchSkeletonItem';
 import * as SearchPagination from 'src/components/search-experience/search-components/SearchPagination';
 import * as SearchItemCommon from 'src/components/search-experience/search-components/SearchItemCommon';
 import * as SearchInput from 'src/components/search-experience/search-components/SearchInput';
 import * as SearchError from 'src/components/search-experience/search-components/SearchError';
 import * as SearchEmptyResults from 'src/components/search-experience/search-components/SearchEmptyResults';
-import * as models from 'src/components/search-experience/search-components/models';
-import * as constants from 'src/components/search-experience/search-components/constants';
+import * as index from 'src/components/search-experience/search-components/SearchItem/index';
 import * as SearchItemTitle from 'src/components/search-experience/search-components/SearchItem/SearchItemTitle';
 import * as SearchItemTags from 'src/components/search-experience/search-components/SearchItem/SearchItemTags';
 import * as SearchItemSummary from 'src/components/search-experience/search-components/SearchItem/SearchItemSummary';
@@ -81,7 +82,6 @@ import * as SearchItemSubTitle from 'src/components/search-experience/search-com
 import * as SearchItemLink from 'src/components/search-experience/search-components/SearchItem/SearchItemLink';
 import * as SearchItemImage from 'src/components/search-experience/search-components/SearchItem/SearchItemImage';
 import * as SearchItemCategory from 'src/components/search-experience/search-components/SearchItem/SearchItemCategory';
-import * as index from 'src/components/search-experience/search-components/SearchItem/index';
 import * as RichTextBlock from 'src/components/rich-text-block/RichTextBlock';
 import * as PromoImageTitlePartialOverlaydev from 'src/components/promo-image/PromoImageTitlePartialOverlay.dev';
 import * as PromoImageRightdev from 'src/components/promo-image/PromoImageRight.dev';
@@ -90,17 +90,17 @@ import * as PromoImageLeftdev from 'src/components/promo-image/PromoImageLeft.de
 import * as PromoImageDefaultdev from 'src/components/promo-image/PromoImageDefault.dev';
 import * as PromoImage from 'src/components/promo-image/PromoImage';
 import * as PromoBlock from 'src/components/promo-block/PromoBlock';
+import * as promoanimatedutil from 'src/components/promo-animated/promo-animated.util';
 import * as PromoAnimatedImageRightdev from 'src/components/promo-animated/PromoAnimatedImageRight.dev';
 import * as PromoAnimatedEmptyImageEditing from 'src/components/promo-animated/PromoAnimatedEmptyImageEditing';
 import * as PromoAnimatedDefaultdev from 'src/components/promo-animated/PromoAnimatedDefault.dev';
 import * as PromoAnimated from 'src/components/promo-animated/PromoAnimated';
-import * as promoanimatedutil from 'src/components/promo-animated/promo-animated.util';
+import * as productlistingdictionary from 'src/components/product-listing/product-listing.dictionary';
 import * as ProductListingThreeUpdev from 'src/components/product-listing/ProductListingThreeUp.dev';
 import * as ProductListingSliderdev from 'src/components/product-listing/ProductListingSlider.dev';
 import * as ProductListingDefaultdev from 'src/components/product-listing/ProductListingDefault.dev';
 import * as ProductListingCarddev from 'src/components/product-listing/ProductListingCard.dev';
 import * as ProductListing from 'src/components/product-listing/ProductListing';
-import * as productlistingdictionary from 'src/components/product-listing/product-listing.dictionary';
 import * as portaldev from 'src/components/portal/portal.dev';
 import * as PageHeaderFiftyFiftydev from 'src/components/page-header/PageHeaderFiftyFifty.dev';
 import * as PageHeaderDefaultdev from 'src/components/page-header/PageHeaderDefault.dev';
@@ -132,52 +132,51 @@ import * as ImageGalleryFeaturedImagedev from 'src/components/image-gallery/Imag
 import * as ImageGallerydev from 'src/components/image-gallery/ImageGallery.dev';
 import * as ImageGallery from 'src/components/image-gallery/ImageGallery';
 import * as nextImageSrcdev from 'src/components/image/nextImageSrc.dev';
+import * as imageoptimizationcontext from 'src/components/image/image-optimization.context';
 import * as ImageWrapperdev from 'src/components/image/ImageWrapper.dev';
 import * as ImageWrapperclient from 'src/components/image/ImageWrapper.client';
-
-import * as imageoptimizationcontext from 'src/components/image/image-optimization.context';
 import * as Icon from 'src/components/icon/Icon';
-import * as YoutubeIcondev from 'src/components/icon/svg/YoutubeIcon.dev';
-import * as TwitterIcondev from 'src/components/icon/svg/TwitterIcon.dev';
 import * as signaldev from 'src/components/icon/svg/signal.dev';
 import * as playdev from 'src/components/icon/svg/play.dev';
-import * as LinkedInIcondev from 'src/components/icon/svg/LinkedInIcon.dev';
 import * as lineplaydev from 'src/components/icon/svg/line-play.dev';
-import * as InternalIcondev from 'src/components/icon/svg/InternalIcon.dev';
-import * as InstagramIcondev from 'src/components/icon/svg/InstagramIcon.dev';
-import * as FileIcondev from 'src/components/icon/svg/FileIcon.dev';
-import * as FacebookIcondev from 'src/components/icon/svg/FacebookIcon.dev';
-import * as ExternalIcondev from 'src/components/icon/svg/ExternalIcon.dev';
-import * as EmailIcondev from 'src/components/icon/svg/EmailIcon.dev';
 import * as diversitydev from 'src/components/icon/svg/diversity.dev';
 import * as crossarrowsdev from 'src/components/icon/svg/cross-arrows.dev';
 import * as communitiesdev from 'src/components/icon/svg/communities.dev';
 import * as arrowuprightdev from 'src/components/icon/svg/arrow-up-right.dev';
 import * as arrowrightdev from 'src/components/icon/svg/arrow-right.dev';
 import * as arrowleftdev from 'src/components/icon/svg/arrow-left.dev';
+import * as YoutubeIcondev from 'src/components/icon/svg/YoutubeIcon.dev';
+import * as TwitterIcondev from 'src/components/icon/svg/TwitterIcon.dev';
+import * as LinkedInIcondev from 'src/components/icon/svg/LinkedInIcon.dev';
+import * as InternalIcondev from 'src/components/icon/svg/InternalIcon.dev';
+import * as InstagramIcondev from 'src/components/icon/svg/InstagramIcon.dev';
+import * as FileIcondev from 'src/components/icon/svg/FileIcon.dev';
+import * as FacebookIcondev from 'src/components/icon/svg/FacebookIcon.dev';
+import * as ExternalIcondev from 'src/components/icon/svg/ExternalIcon.dev';
+import * as EmailIcondev from 'src/components/icon/svg/EmailIcon.dev';
+import * as herodictionary from 'src/components/hero/hero.dictionary';
 import * as HeroImageRightdev from 'src/components/hero/HeroImageRight.dev';
 import * as HeroImageBottomInsetdev from 'src/components/hero/HeroImageBottomInset.dev';
 import * as HeroImageBottomdev from 'src/components/hero/HeroImageBottom.dev';
 import * as HeroImageBackgrounddev from 'src/components/hero/HeroImageBackground.dev';
 import * as HeroDefaultdev from 'src/components/hero/HeroDefault.dev';
 import * as Hero from 'src/components/hero/Hero';
-import * as herodictionary from 'src/components/hero/hero.dictionary';
 import * as GlobalHeaderDefaultdev from 'src/components/global-header/GlobalHeaderDefault.dev';
 import * as GlobalHeaderCentereddev from 'src/components/global-header/GlobalHeaderCentered.dev';
 import * as GlobalHeader from 'src/components/global-header/GlobalHeader';
+import * as globalfooterdictionary from 'src/components/global-footer/global-footer.dictionary';
 import * as GlobalFooterDefaultdev from 'src/components/global-footer/GlobalFooterDefault.dev';
 import * as GlobalFooterBlueCompactdev from 'src/components/global-footer/GlobalFooterBlueCompact.dev';
 import * as GlobalFooterBlueCentereddev from 'src/components/global-footer/GlobalFooterBlueCentered.dev';
 import * as GlobalFooterBlackLargedev from 'src/components/global-footer/GlobalFooterBlackLarge.dev';
 import * as GlobalFooterBlackCompactdev from 'src/components/global-footer/GlobalFooterBlackCompact.dev';
 import * as GlobalFooter from 'src/components/global-footer/GlobalFooter';
-import * as globalfooterdictionary from 'src/components/global-footer/global-footer.dictionary';
 import * as FooterNavigationColumndev from 'src/components/global-footer/FooterNavigationColumn.dev';
 import * as FooterNavigationColumn from 'src/components/global-footer/FooterNavigationColumn';
 import * as ZipcodeSearchFormdev from 'src/components/forms/zipcode/ZipcodeSearchForm.dev';
 import * as successcompactdev from 'src/components/forms/success/success-compact.dev';
-import * as SubmitInfoFormdev from 'src/components/forms/submitinfo/SubmitInfoForm.dev';
 import * as submitinfoformdictionary from 'src/components/forms/submitinfo/submit-info-form.dictionary';
+import * as SubmitInfoFormdev from 'src/components/forms/submitinfo/SubmitInfoForm.dev';
 import * as EmailSignupFormdev from 'src/components/forms/email/EmailSignupForm.dev';
 import * as FooterNavigationCalloutdev from 'src/components/footer-navigation-callout/FooterNavigationCallout.dev';
 import * as floatingdockdev from 'src/components/floating-dock/floating-dock.dev';
@@ -196,19 +195,19 @@ import * as Container4060 from 'src/components/container/container-4060/Containe
 import * as Container3070 from 'src/components/container/container-3070/Container3070';
 import * as Container303030 from 'src/components/container/container-303030/Container303030';
 import * as Container25252525 from 'src/components/container/container-25252525/Container25252525';
+import * as logocloud from 'src/components/component-library/logo-cloud';
 import * as Testimonials from 'src/components/component-library/Testimonials';
 import * as TeamSection from 'src/components/component-library/TeamSection';
 import * as StatsSection from 'src/components/component-library/StatsSection';
 import * as ProductsSection from 'src/components/component-library/ProductsSection';
 import * as PlaceholderTabs from 'src/components/component-library/PlaceholderTabs';
 import * as NewsletterSection from 'src/components/component-library/NewsletterSection';
-import * as logocloud from 'src/components/component-library/logo-cloud';
 import * as Header from 'src/components/component-library/Header';
 import * as FeaturesSection from 'src/components/component-library/FeaturesSection';
 import * as FAQ from 'src/components/component-library/FAQ';
 import * as ContactSection from 'src/components/component-library/ContactSection';
-import * as CLHero from 'src/components/component-library/CLHero';
 import * as CallToAction from 'src/components/component-library/CallToAction';
+import * as CLHero from 'src/components/component-library/CLHero';
 import * as Carousel from 'src/components/carousel/Carousel';
 import * as cardspotlightdev from 'src/components/card-spotlight/card-spotlight.dev';
 import * as Carddev from 'src/components/card/Card.dev';
@@ -284,14 +283,15 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['useParams', { ...useParams, componentType: 'client' }],
   ['useEvent', { ...useEvent, componentType: 'client' }],
   ['useDebounce', { ...useDebounce, componentType: 'client' }],
+  ['models', { ...models }],
+  ['constants', { ...constants }],
   ['SearchSkeletonItem', { ...SearchSkeletonItem, componentType: 'client' }],
   ['SearchPagination', { ...SearchPagination, componentType: 'client' }],
   ['SearchItemCommon', { ...SearchItemCommon, componentType: 'client' }],
   ['SearchInput', { ...SearchInput, componentType: 'client' }],
   ['SearchError', { ...SearchError, componentType: 'client' }],
   ['SearchEmptyResults', { ...SearchEmptyResults, componentType: 'client' }],
-  ['models', { ...models }],
-  ['constants', { ...constants }],
+  ['index', { ...index, componentType: 'client' }],
   ['SearchItemTitle', { ...SearchItemTitle, componentType: 'client' }],
   ['SearchItemTags', { ...SearchItemTags, componentType: 'client' }],
   ['SearchItemSummary', { ...SearchItemSummary, componentType: 'client' }],
@@ -299,7 +299,6 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['SearchItemLink', { ...SearchItemLink, componentType: 'client' }],
   ['SearchItemImage', { ...SearchItemImage, componentType: 'client' }],
   ['SearchItemCategory', { ...SearchItemCategory, componentType: 'client' }],
-  ['index', { ...index, componentType: 'client' }],
   ['RichTextBlock', { ...RichTextBlock }],
   ['PromoImageTitlePartialOverlay', { ...PromoImageTitlePartialOverlaydev }],
   ['PromoImageRight', { ...PromoImageRightdev }],
@@ -308,17 +307,17 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['PromoImageDefault', { ...PromoImageDefaultdev }],
   ['PromoImage', { ...PromoImage }],
   ['PromoBlock', { ...PromoBlock }],
+  ['promo-animated', { ...promoanimatedutil }],
   ['PromoAnimatedImageRight', { ...PromoAnimatedImageRightdev }],
   ['PromoAnimatedEmptyImageEditing', { ...PromoAnimatedEmptyImageEditing }],
   ['PromoAnimatedDefault', { ...PromoAnimatedDefaultdev }],
   ['PromoAnimated', { ...PromoAnimated, componentType: 'client' }],
-  ['promo-animated', { ...promoanimatedutil }],
+  ['product-listing', { ...productlistingdictionary }],
   ['ProductListingThreeUp', { ...ProductListingThreeUpdev }],
   ['ProductListingSlider', { ...ProductListingSliderdev }],
   ['ProductListingDefault', { ...ProductListingDefaultdev }],
   ['ProductListingCard', { ...ProductListingCarddev }],
   ['ProductListing', { ...ProductListing, componentType: 'client' }],
-  ['product-listing', { ...productlistingdictionary }],
   ['portal', { ...portaldev }],
   ['PageHeaderFiftyFifty', { ...PageHeaderFiftyFiftydev }],
   ['PageHeaderDefault', { ...PageHeaderDefaultdev }],
@@ -349,50 +348,49 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['ImageGalleryFeaturedImage', { ...ImageGalleryFeaturedImagedev }],
   ['ImageGallery', { ...ImageGallerydev, ...ImageGallery, componentType: 'client' }],
   ['nextImageSrc', { ...nextImageSrcdev }],
-  ['ImageWrapper', { ...ImageWrapperdev, ...ImageWrapperclient }],
-
   ['image-optimization', { ...imageoptimizationcontext }],
+  ['ImageWrapper', { ...ImageWrapperdev, ...ImageWrapperclient }],
   ['Icon', { ...Icon, componentType: 'client' }],
-  ['YoutubeIcon', { ...YoutubeIcondev }],
-  ['TwitterIcon', { ...TwitterIcondev }],
   ['signal', { ...signaldev }],
   ['play', { ...playdev }],
-  ['LinkedInIcon', { ...LinkedInIcondev }],
   ['line-play', { ...lineplaydev }],
-  ['InternalIcon', { ...InternalIcondev }],
-  ['InstagramIcon', { ...InstagramIcondev }],
-  ['FileIcon', { ...FileIcondev }],
-  ['FacebookIcon', { ...FacebookIcondev }],
-  ['ExternalIcon', { ...ExternalIcondev }],
-  ['EmailIcon', { ...EmailIcondev }],
   ['diversity', { ...diversitydev }],
   ['cross-arrows', { ...crossarrowsdev }],
   ['communities', { ...communitiesdev }],
   ['arrow-up-right', { ...arrowuprightdev }],
   ['arrow-right', { ...arrowrightdev }],
   ['arrow-left', { ...arrowleftdev }],
+  ['YoutubeIcon', { ...YoutubeIcondev }],
+  ['TwitterIcon', { ...TwitterIcondev }],
+  ['LinkedInIcon', { ...LinkedInIcondev }],
+  ['InternalIcon', { ...InternalIcondev }],
+  ['InstagramIcon', { ...InstagramIcondev }],
+  ['FileIcon', { ...FileIcondev }],
+  ['FacebookIcon', { ...FacebookIcondev }],
+  ['ExternalIcon', { ...ExternalIcondev }],
+  ['EmailIcon', { ...EmailIcondev }],
+  ['hero', { ...herodictionary }],
   ['HeroImageRight', { ...HeroImageRightdev }],
   ['HeroImageBottomInset', { ...HeroImageBottomInsetdev }],
   ['HeroImageBottom', { ...HeroImageBottomdev }],
   ['HeroImageBackground', { ...HeroImageBackgrounddev }],
   ['HeroDefault', { ...HeroDefaultdev }],
   ['Hero', { ...Hero, componentType: 'client' }],
-  ['hero', { ...herodictionary }],
   ['GlobalHeaderDefault', { ...GlobalHeaderDefaultdev }],
   ['GlobalHeaderCentered', { ...GlobalHeaderCentereddev }],
   ['GlobalHeader', { ...GlobalHeader, componentType: 'client' }],
+  ['global-footer', { ...globalfooterdictionary }],
   ['GlobalFooterDefault', { ...GlobalFooterDefaultdev }],
   ['GlobalFooterBlueCompact', { ...GlobalFooterBlueCompactdev }],
   ['GlobalFooterBlueCentered', { ...GlobalFooterBlueCentereddev }],
   ['GlobalFooterBlackLarge', { ...GlobalFooterBlackLargedev }],
   ['GlobalFooterBlackCompact', { ...GlobalFooterBlackCompactdev }],
   ['GlobalFooter', { ...GlobalFooter, componentType: 'client' }],
-  ['global-footer', { ...globalfooterdictionary }],
   ['FooterNavigationColumn', { ...FooterNavigationColumndev, ...FooterNavigationColumn, componentType: 'client' }],
   ['ZipcodeSearchForm', { ...ZipcodeSearchFormdev }],
   ['success-compact', { ...successcompactdev }],
-  ['SubmitInfoForm', { ...SubmitInfoFormdev }],
   ['submit-info-form', { ...submitinfoformdictionary }],
+  ['SubmitInfoForm', { ...SubmitInfoFormdev }],
   ['EmailSignupForm', { ...EmailSignupFormdev }],
   ['FooterNavigationCallout', { ...FooterNavigationCalloutdev }],
   ['floating-dock', { ...floatingdockdev }],
@@ -411,19 +409,19 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['Container3070', { ...Container3070 }],
   ['Container303030', { ...Container303030 }],
   ['Container25252525', { ...Container25252525 }],
+  ['logo-cloud', { ...logocloud }],
   ['Testimonials', { ...Testimonials }],
   ['TeamSection', { ...TeamSection }],
   ['StatsSection', { ...StatsSection }],
   ['ProductsSection', { ...ProductsSection, componentType: 'client' }],
   ['PlaceholderTabs', { ...PlaceholderTabs }],
   ['NewsletterSection', { ...NewsletterSection }],
-  ['logo-cloud', { ...logocloud }],
   ['Header', { ...Header, componentType: 'client' }],
   ['FeaturesSection', { ...FeaturesSection, componentType: 'client' }],
   ['FAQ', { ...FAQ, componentType: 'client' }],
   ['ContactSection', { ...ContactSection, componentType: 'client' }],
-  ['CLHero', { ...CLHero }],
   ['CallToAction', { ...CallToAction }],
+  ['CLHero', { ...CLHero }],
   ['Carousel', { ...Carousel, componentType: 'client' }],
   ['card-spotlight', { ...cardspotlightdev }],
   ['Card', { ...Carddev }],
