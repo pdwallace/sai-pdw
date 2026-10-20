@@ -1,4 +1,4 @@
-import "./globals.css";
+import "../assets/main.css";
 import { Roboto } from "next/font/google";
 
 // Configure the font

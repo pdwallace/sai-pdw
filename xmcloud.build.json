@@ -1,7 +1,6 @@
 {
   "renderingHosts": {
 
-    
     "prospera": {
       "path": "./industry-verticals/Prospera",
       "nodeVersion": "24.14.1",
