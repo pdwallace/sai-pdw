@@ -1,0 +1,115 @@
+@import '../zscaler-mixins';
+
+.component.hero-banner.variant-zscaler {
+  @include zs-tokens;
+  --v-on: var(--v-white);
+  --v-on-hover: var(--v-navy);
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background: var(--v-navy);
+  color: var(--v-white);
+
+  .zs-hero-inner {
+    @include zs-section-width;
+    position: relative;
+  }
+
+  .zs-hero-tagline {
+    margin: 0 0 16px;
+    font-family: var(--v-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--v-mint);
+  }
+
+  .zs-hero-title {
+    margin: 0 0 24px;
+    font-size: 60px;
+    font-weight: 600;
+    line-height: 1.05;
+    color: var(--v-white);
+  }
+
+  .zs-hero-text {
+    margin: 0 0 32px;
+    font-size: 24px;
+    line-height: 1.4;
+    color: var(--v-white);
+
+    p {
+      margin: 0 0 12px;
+    }
+  }
+
+  .zs-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  &.is-photo {
+    .zs-hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .zs-hero-inner {
+      display: flex;
+      align-items: center;
+      min-height: 640px;
+      padding-top: 56px;
+      padding-bottom: 56px;
+    }
+
+    .zs-hero-panel {
+      width: 100%;
+      padding: 72px 64px;
+      border-radius: 16px;
+      background: rgba(0, 20, 58, 0.6);
+      backdrop-filter: blur(2px);
+    }
+  }
+
+  &.is-split {
+    .zs-hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+      align-items: center;
+      padding-top: 72px;
+      padding-bottom: 72px;
+    }
+
+    .zs-hero-img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .component.hero-banner.variant-zscaler {
+    .zs-hero-title {
+      font-size: 40px;
+    }
+
+    .zs-hero-text {
+      font-size: 18px;
+    }
+
+    &.is-photo .zs-hero-panel {
+      padding: 40px 28px;
+    }
+
+    &.is-split .zs-hero-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}

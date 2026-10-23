@@ -1,0 +1,46 @@
+@import '../zscaler-mixins';
+
+.component.contact-form.variant-zscaler {
+  @include zs-tokens;
+  margin: 0;
+  padding: 72px 24px;
+  background: var(--v-ice);
+
+  .zs-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 48px;
+    border-radius: 16px;
+    background: var(--v-white);
+  }
+
+  .zs-form-title {
+    margin: 0 0 8px;
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--v-navy);
+  }
+
+  .zs-form-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--v-navy);
+    border-radius: 0;
+    background: var(--v-white);
+    font-family: var(--v-font);
+    font-size: 16px;
+    color: var(--v-navy);
+  }
+
+  .zs-form-message {
+    min-height: 140px;
+    resize: vertical;
+  }
+
+  .zs-btn {
+    align-self: flex-start;
+  }
+}

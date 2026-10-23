@@ -1,0 +1,135 @@
+@import '../zscaler-mixins';
+
+.component.cta-banner.variant-zscaler {
+  @include zs-tokens;
+  --v-on: var(--v-white);
+  --v-on-hover: var(--v-navy);
+  margin: 0;
+  padding: 48px 0;
+  background: var(--v-white);
+
+  .zs-cta-frame {
+    @include zs-section-width;
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 420px;
+    overflow: hidden;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--v-navy) 0%, var(--v-navy-deep) 100%);
+  }
+
+  .zs-cta-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .zs-cta-panel {
+    position: relative;
+    max-width: 640px;
+    padding: 64px;
+    color: var(--v-white);
+  }
+
+  .zs-eyebrow {
+    color: var(--v-mint);
+  }
+
+  .zs-cta-title {
+    margin: 0 0 20px;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--v-white);
+  }
+
+  .zs-cta-text {
+    margin: 0 0 28px;
+    font-size: 20px;
+    line-height: 1.4;
+    color: var(--v-white);
+
+    p {
+      margin: 0 0 12px;
+    }
+  }
+
+  &.zs-subscribe {
+    padding: 32px 0 72px;
+
+    .zs-subscribe-panel {
+      @include zs-section-width;
+      max-width: 1110px;
+      padding: 72px 64px;
+      border-radius: 16px;
+      background: linear-gradient(90deg, var(--v-blue) 0%, #40a58f 100%);
+      color: var(--v-white);
+    }
+
+    .zs-subscribe-title {
+      max-width: 700px;
+      margin: 0 0 40px;
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--v-white);
+    }
+
+    .zs-subscribe-form {
+      display: flex;
+      gap: 8px;
+      max-width: 520px;
+    }
+
+    .zs-subscribe-input {
+      flex: 1 1 auto;
+      min-width: 0;
+      padding: 12px 14px;
+      border: 1px solid var(--v-navy);
+      border-radius: 0;
+      background: var(--v-white);
+      font-family: var(--v-font);
+      font-size: 14px;
+      color: var(--v-navy);
+    }
+
+    .zs-subscribe-legal {
+      margin-top: 32px;
+      font-size: 14px;
+      color: var(--v-white);
+
+      p {
+        margin: 0;
+      }
+
+      a {
+        color: var(--v-white);
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .component.cta-banner.variant-zscaler {
+    .zs-cta-panel {
+      padding: 40px 24px;
+    }
+
+    .zs-cta-title,
+    &.zs-subscribe .zs-subscribe-title {
+      font-size: 32px;
+    }
+
+    &.zs-subscribe .zs-subscribe-panel {
+      padding: 40px 24px;
+    }
+
+    &.zs-subscribe .zs-subscribe-form {
+      flex-direction: column;
+    }
+  }
+}

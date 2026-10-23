@@ -1,0 +1,134 @@
+@import '../zscaler-mixins';
+
+.component.article-list.variant-zscaler {
+  @include zs-tokens;
+  margin: 0;
+  padding: 32px 0 64px;
+  background: var(--v-white);
+
+  .zs-articles-inner {
+    @include zs-section-width;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px 24px;
+  }
+
+  .zs-article-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    color: var(--v-navy);
+    text-decoration: none;
+
+    &:hover .zs-article-title {
+      color: var(--v-blue);
+    }
+  }
+
+  .zs-article-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .zs-article-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .zs-article-meta {
+    font-family: var(--v-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--v-blue);
+  }
+
+  .zs-article-title {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.25;
+    transition: color 0.15s ease;
+  }
+
+  &.zs-articles-featured {
+    padding-top: 48px;
+
+    .zs-articles-inner {
+      grid-template-columns: 2fr 1fr;
+      grid-auto-flow: dense;
+    }
+
+    .zs-article-card:first-child {
+      grid-row: span 2;
+
+      .zs-article-title {
+        font-size: 32px;
+      }
+    }
+
+    .zs-article-card:not(:first-child) .zs-article-img {
+      aspect-ratio: 2 / 1;
+    }
+  }
+
+  &.zs-articles-tiles {
+    .zs-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      min-height: 160px;
+      padding: 24px;
+      border: 1px solid var(--v-rule);
+      background: var(--v-ice);
+      color: var(--v-navy);
+      text-decoration: none;
+      transition: border-color 0.15s ease;
+
+      &:hover {
+        border-color: var(--v-navy);
+      }
+    }
+
+    .zs-tile-title {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+  }
+
+  &.zs-articles-topics {
+    .zs-articles-inner {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .zs-article-card {
+      flex-direction: row;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--v-rule);
+    }
+
+    .zs-article-img {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .component.article-list.variant-zscaler {
+    .zs-articles-inner,
+    &.zs-articles-featured .zs-articles-inner {
+      grid-template-columns: 1fr;
+    }
+
+    &.zs-articles-featured .zs-article-card:first-child {
+      grid-row: auto;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+@import '../zscaler-mixins';
+
+.component.image-gallery.variant-zscaler {
+  @include zs-tokens;
+  margin: 0;
+  padding: 24px 0 72px;
+  background: var(--v-white);
+
+  .zs-gallery-list {
+    @include zs-section-width;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 32px 56px;
+    margin: 0 auto;
+    list-style: none;
+  }
+
+  .zs-gallery-item img {
+    display: block;
+    width: auto;
+    max-width: 180px;
+    height: 36px;
+    object-fit: contain;
+  }
+
+  &.zs-logo-strip {
+    padding: 24px 0 72px;
+    background: var(--v-navy);
+
+    .zs-gallery-item img {
+      // customer logos are supplied in colour; the strip shows them as white marks on navy
+      filter: brightness(0) invert(1);
+    }
+  }
+}

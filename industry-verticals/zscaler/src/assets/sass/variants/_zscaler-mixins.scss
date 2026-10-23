@@ -1,0 +1,68 @@
+// Zscaler variant tokens, measured on https://www.zscaler.com (see docs/ai/demos/zscaler/sections.md).
+// Scoped as custom properties on each variant wrapper; no theme accent is used as a stand-in.
+@mixin zs-tokens {
+  --v-navy: #001744;
+  --v-navy-deep: #00143a;
+  --v-mint: #6bffb3;
+  --v-blue: #256cf7;
+  --v-ice: #e5f1fa;
+  --v-rule: #c9d3e6;
+  --v-white: #fff;
+  --v-font: var(--font-family, 'Plus Jakarta Sans', Helvetica, Arial, sans-serif);
+  --v-mono: var(--font-family-mono, 'IBM Plex Mono', ui-monospace, Menlo, monospace);
+  font-family: var(--v-font);
+}
+
+@mixin zs-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 22px;
+  background: var(--v-mint);
+  color: var(--v-navy);
+  font-family: var(--v-font);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: var(--v-white);
+    color: var(--v-navy);
+  }
+}
+
+@mixin zs-button-outline($color: var(--v-navy)) {
+  @include zs-button;
+  background: transparent;
+  color: $color;
+  box-shadow: inset 0 0 0 2px $color;
+
+  &:hover {
+    background: $color;
+    color: var(--v-on-hover, var(--v-white));
+  }
+}
+
+@mixin zs-tag {
+  display: inline-block;
+  padding: 3px 6px;
+  border: 1px solid var(--v-navy);
+  font-family: var(--v-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--v-navy);
+}
+
+@mixin zs-section-width {
+  max-width: 1110px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}

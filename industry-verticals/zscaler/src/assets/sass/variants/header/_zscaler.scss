@@ -1,0 +1,218 @@
+@import '../zscaler-mixins';
+
+// Hand-refined from the header-kit output (header-styles.json, measured on https://www.zscaler.com).
+// Prospect band layout at 1440px: 56px announcement bar (#e5f1fa), then one 124px white band holding the utility links
+// (44px) above the logo + main menu (80px). Brand values are scoped custom properties, not theme variables.
+$zs-header-pad: 57px;
+
+.component.eyebrow.variant-zscaler {
+  @include zs-tokens;
+  position: relative;
+  background: var(--v-white);
+
+  .eyebrow-announcement {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    min-height: 56px;
+    padding: 0 64px;
+    background: var(--v-ice);
+  }
+
+  .eyebrow-announcement-text {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--v-navy);
+  }
+
+  .eyebrow-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 8px;
+    border-radius: 0;
+    background: var(--v-navy);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--v-white);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .eyebrow-announcement-close {
+    position: absolute;
+    top: 50%;
+    right: 40px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-size: 24px;
+    line-height: 1;
+    color: var(--v-navy);
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+
+  .container {
+    max-width: none;
+    padding-left: $zs-header-pad;
+    padding-right: $zs-header-pad;
+  }
+
+  .eyebrow-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+    min-height: 44px;
+  }
+
+  // the theme switch is not part of the prospect's header
+  .eyebrow-slot-left {
+    display: none;
+  }
+
+  .eyebrow-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    a {
+      font-family: var(--v-font);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--v-navy);
+      text-decoration: none;
+      white-space: nowrap;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  // the search icon sits in the logo row, to the right of the menu
+  .eyebrow-search {
+    position: absolute;
+    top: 62px;
+    right: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--v-navy);
+    cursor: pointer;
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  // language switcher shows as the globe icon only
+  .language-switcher {
+    display: inline-flex;
+    align-items: center;
+
+    .selected-language,
+    .chevron-icon {
+      display: none;
+    }
+
+    &::before {
+      content: '';
+      width: 18px;
+      height: 18px;
+      background: var(--v-navy);
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18'/%3E%3C/svg%3E") center / contain no-repeat;
+    }
+  }
+}
+
+.component.header.variant-zscaler {
+  @include zs-tokens;
+  padding: 0;
+  background: var(--v-white);
+
+  .container {
+    max-width: none;
+    padding-left: $zs-header-pad;
+    padding-right: $zs-header-pad;
+  }
+
+  .row {
+    margin: 0;
+    min-height: 80px;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  img {
+    max-width: none;
+  }
+}
+
+@media (min-width: 992px) {
+  .component.navigation.navigation-horizontal.variant-zscaler {
+    @include zs-tokens;
+
+    &,
+    * {
+      text-align: left !important;
+    }
+
+    .component-content {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    nav {
+      width: 100%;
+    }
+
+    nav > ul {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 40px;
+      margin: 0 0 0 64px;
+      padding: 0;
+      list-style: none;
+    }
+
+    nav > ul > li > ul {
+      display: none !important; // top level only, whatever else comes through
+    }
+
+    .navigation-title a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--v-font);
+      font-size: 16px;
+      font-weight: 500;
+      text-transform: capitalize;
+      color: var(--v-navy);
+      text-decoration: none;
+      white-space: nowrap;
+
+      &::after {
+        content: '';
+        width: 7px;
+        height: 7px;
+        margin-top: -3px;
+        border-right: 1.5px solid var(--v-navy);
+        border-bottom: 1.5px solid var(--v-navy);
+        transform: rotate(45deg);
+      }
+    }
+  }
+}

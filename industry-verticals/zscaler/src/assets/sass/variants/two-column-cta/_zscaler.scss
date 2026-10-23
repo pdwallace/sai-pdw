@@ -1,0 +1,64 @@
+@import '../zscaler-mixins';
+
+.component.two-column-cta.variant-zscaler {
+  @include zs-tokens;
+  margin: 0;
+  padding: 16px 0;
+  background: var(--v-white);
+
+  .zs-two-inner {
+    @include zs-section-width;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .zs-two-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--v-rule);
+    border-radius: 16px;
+    background: var(--v-white);
+  }
+
+  .zs-two-img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .zs-two-body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 28px;
+  }
+
+  .zs-two-title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--v-navy);
+  }
+
+  .zs-two-text {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.45;
+    color: var(--v-navy);
+  }
+
+  .zs-two-body .zs-link {
+    margin-top: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .component.two-column-cta.variant-zscaler .zs-two-inner {
+    grid-template-columns: 1fr;
+  }
+}
